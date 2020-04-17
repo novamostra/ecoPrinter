@@ -1,0 +1,30 @@
+#!/bin/bash
+# ecoPrinter Gadget
+# author: novamostra
+# April 2020
+
+modprobe libcomposite
+cd /sys/kernel/config/usb_gadget/
+mkdir -p ecoPrinter
+cd ecoPrinter
+# Device's Information
+echo 0x04a9 > idVendor
+echo 0x1761 > idProduct
+echo 0x0100 > bcdDevice
+echo 0x0200 > bcdUSB
+echo 0x07 > bDeviceClass
+echo 0x01 > bDeviceSubClass
+echo 0x01 > bDeviceProtocol
+# Set English Locale
+mkdir -p strings/0x409
+echo "10000001" > strings/0x409/serialnumber
+echo "Novamostra" > strings/0x409/manufacturer
+echo "ecoPrinter" > strings/0x409/product
+mkdir -p configs/c.1/strings/0x409
+echo 120 > configs/c.1/MaxPower
+mkdir -p functions/printer.usb0
+echo 10 > functions/printer.usb0/q_len
+echo "MFG:linux;MDL:g_printer;CLS:PRINTER;SN:1;" > functions/printer.usb0/pnp_string
+echo "Conf 1" > configs/c.1/strings/0x409/configuration
+ln -s functions/printer.usb0 configs/c.1/
+ls /sys/class/udc > UDC

@@ -21,6 +21,10 @@ log = logging.getLogger()
 
 infile = os.open("/dev/g_printer0", os.O_RDONLY)
 
+#check if prints directory exist or create it
+if not os.path.isdir("prints"):
+    os.mkdir("prints")
+
 indicator = WS2812B(board.D18,12)
 indicator.loop((0,0,200),0.02,3)
 indicator.reset()
