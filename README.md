@@ -15,7 +15,7 @@ The main idea for this device is to reduce the amount of paper we use and also h
 ## Schematic
 ![ecoPrinter schematic](https://novamostra.com/wp-content/uploads/2020/02/ecoPrinterSchematic.png)
 
-## Configuration/Setup]
+## Configuration/Setup
 1. Clone the repository
 2. Set execute permission to setup.sh
 ```bash
